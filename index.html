@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#000000">
+
+  <!-- seo optimized meta description/keywords and title-->
+  <meta name="description" content="Focus app with ambient sounds, timer, to-do-list and notes - everything you need for studying, learning, concentrating">
+  <meta name="keywords" content="focus, study, learn, focus, concentrate, music, ambient sounds">
+  <title>focus. - feel focused with ambient sounds and nothing more.</title>
+
+  <!-- favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+
+  <!-- CSS -->
+  <!-- beer css framework -->
+  <link href="https://cdn.jsdelivr.net/npm/beercss@3.2.13/dist/cdn/beer.min.css" rel="stylesheet">
+  <!-- customized css -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JS -->
+  <!-- beer css framework -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.2.13/dist/cdn/beer.min.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/material-dynamic-colors@1.0.1/dist/cdn/material-dynamic-colors.min.js"></script>
+  <!-- howler audio library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"
+    integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+  <!-- music player js -->
+  <script defer src="js/player.js"></script>
+  <!-- light/dark theme js -->
+  <script defer src="js/theme.js"></script>
+  <!-- notes components js -->
+  <script defer src="js/notes.js"></script>
+  <!-- todo components js -->
+  <script defer src="js/todo.js"></script>
+  <!-- timer components js -->
+  <script defer src="js/timer.js"></script>
+  <!-- favorites components js -->
+  <script defer src="js/favorites.js"></script>
+</head>
+
+<body class="dark small-line center-align">
+  <!-- navigation -->
+  <nav class="top l large-padding transparent blur" role="menu">
+    <a href="#" class="vertical" aria-label="link to home" role="menuitem">
+      <img src="img/desktop_icon_with_text_logo_dark_mode.svg" alt="logo with a pair of headphones inside a focus lens and title focus." class="logo-dark">
+      <img src="img/desktop_icon_with_text_logo_light_mode.svg" alt="logo with a pair of headphones inside a focus lens and title focus." class="logo-light">
+    </a>
+    <div class="max"></div>
+    <a data-ui="#dialog-about" class="small-margin menu-item" aria-label="link to about" role="menuitem"><i class="small-padding">info</i>About</a>
+    <a data-ui="#dialog-timer" class="small-margin menu-item" aria-label="link to timer" role="menuitem"><i class="small-padding">timer</i>Timer</a>
+    <a data-ui="#dialog-todo" class="small-margin menu-item" aria-label="link to to-do-list" role="menuitem"><i class="small-padding">task</i>To-Do</a>
+    <a data-ui="#dialog-notes" class="small-margin menu-item" aria-label="link to notes" role="menuitem"><i class="small-padding">edit_document</i>Notes</a>
+    <label class="switch icon theme margin">
+      <input type="checkbox" aria-label="switch to light/dark mode" checked>
+      <span>
+        <i class="fill">dark_mode</i>
+      </span>
+    </label>
+  </nav>
+
+  <!-- navigation responsive -->
+  <header class="fixed no-margin large-padding m s row transparent blur">
+    <a href="#" aria-label="link to home">
+      <img src="img/tablet_mobile_icon_with_text_logo_dark_mode.svg" alt="logo with a pair of headphones inside a focus lens and title focus."
+        class="logo-dark">
+      <img src="img/tablet_mobile_icon_with_text_logo_light_mode.svg" alt="logo with a pair of headphones inside a focus lens and title focus."
+        class="logo-light">
+    </a>
+    <div class="max"></div>
+    <label class="switch icon theme">
+      <input type="checkbox" aria-label="switch to light/dark mode" checked>
+      <span>
+        <i class="fill">dark_mode</i>
+      </span>
+    </label>
+  </header>
+  <nav class="bottom m s transparent blur responsive-nav-bottom" role="menu">
+    <div class="max"></div>
+    <a data-ui="#dialog-about-responsive" class="menu-item" aria-label="link to about" role="menuitem"><i>info</i>About</a>
+    <div class="max"></div>
+    <a data-ui="#dialog-timer-responsive" class="menu-item" aria-label="link to timer" role="menuitem"><i>timer</i>Timer</a>
+    <div class="max"></div>
+    <a data-ui="#dialog-todo-responsive" class="menu-item" aria-label="link to to-do-list" role="menuitem"><i>task</i>To-Do</a>
+    <div class="max"></div>
+    <a data-ui="#dialog-notes-responsive" class="menu-item" aria-label="link to notes" role="menuitem"><i>edit_document</i>Notes</a>
+    <div class="max"></div>
+  </nav>
+
+  <!-- ambient sounds -->
+  <main class="middle-align responsive vertical">
+    <div class="scroll-container">
+      <div class="filter-container">
+        <button class="border secondary-border round no-wrap ambient filter" data-category="ambient">Ambient</button>
+        <button class="border secondary-border round no-wrap instrumental filter" data-category="instrumental">Instrumental</button>
+        <button class="border secondary-border round no-wrap lofi filter" data-category="lofi">Lo-Fi</button>
+        <button class="border secondary-border round no-wrap jazzchill filter" data-category="jazz_chillout">Jazz & Chillout</button>
+        <button class="border secondary-border round no-wrap moody filtered">
+          <span>Mood</span>
+          <i>arrow_drop_down</i>
+          <menu class="mymenu">
+            <a class="mood" data-mood="study">Study</a>
+            <a class="mood" data-mood="cozy">Cozy</a>
+            <a class="mood" data-mood="booster">Booster</a>
+          </menu>
+        </button>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="s12 tabs">
+        <a class="tab t-sounds active">
+          <i class="small">library_music</i>
+          <span class="tiny-padding">Sounds</span>
+        </a>
+        <a class="tab t-favorites">
+          <i class="small">favorite</i>
+          <span class="tiny-padding">Favorites</span>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_bonfire">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">local_fire_department</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Bonfire</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_cafe">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">local_cafe</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Café</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_cat_purr">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">pets</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Cat Purr</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_forest">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">forest</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Forest</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_rain">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">rainy</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Rain</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_waves">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">waves</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Waves</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="ambient_wind">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">air</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Wind</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="instrumental_bach">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">theater_comedy</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Orchestra</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="instrumental_japan">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">temple_buddhist</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Japan</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="instrumental_piano">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">piano</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Piano</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="instrumental_underwater">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">scuba_diving</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Underwater</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="jazz_chillout_lounge">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">deck</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Lounge</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="jazz_chillout_night">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">nightlife</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Jazz Night</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="jazz_chillout_restaurant">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">food_bank</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Restaurant</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="lofi_afternoon">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">chair</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Afternoon</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="lofi_clouds">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">cloud</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Clouds</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="lofi_hug">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">diversity_4</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Warm Hug</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin">
+        <div class="s6 m4 l4 large-padding ambient-icons-container round" data-audio="lofi_moonlight">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">sleep</i>
+        </div>
+        <a class="tiny-margin" aria-label="toggle like/dislike song" role="switch">
+          <i class="favorite-icon small primary-text">heart_plus</i>
+          <label class="small-padding">Moonlight</label>
+        </a>
+      </div>
+      <div class="s6 m4 l4 sound-container large-margin random-container">
+        <div class="s6 m4 l4 large-padding ambient-icons-container shuffle round" data-audio="random">
+          <div class="volume-bar"></div>
+          <i class="ambient-icons">shuffle</i>
+        </div>
+        <a class="tiny-margin" aria-label="label for shuffle-icon" role="note">
+          <label class="small-padding">Random</label>
+        </a>
+      </div>
+      <div class="s12"><button class="large border secondary-border show-all large-margin">Mehr anzeigen</button></div>
+    </div>
+  </main>
+
+  <!-- DIALOGS -->
+  <!-- about -->
+  <dialog class="left large large-padding l" id="dialog-about">
+    <button data-ui="#dialog-about" class="fill circle small-padding large-margin absolute right top dialog-close">
+      <i class="large">arrow_back_ios_new</i>
+    </button>
+    <div class="large-margin content-container text-justify">
+      <h1 class="small">About</h1>
+      <p>Schön, bist du hier auf <span class="italic">focus.</span> gelandet - dein perfekter Musik-Begleiter für eine produktive und
+        entspannte Zeit, passend zu deiner Umgebung und Stimmung. Ein Timer, eine To-do-Liste sowie ein digitaler Notizblock unterstützen dich bei der
+        Struktur und Entladung deines Gedankenkarussells.</p>
+      <a href="https://forms.gle/6cZh1fo7GYquNikC8" target=”_blank” class="feedback-button">
+        <button class="border secondary-border large">Lob, Anregungen, Bugs? Hinterlasse mir ein Feedback! <i class="tiny fill red-text">favorite</i></button>
+      </a>
+      <!-- <p>Lesenwerte Studien zu Musik und Lernen:</p>
+      <li><a href="https://www.jstor.org/stable/10.1086/665048" class="link" target=”_blank”>Is Noise Always Bad?</a></li> -->
+      <div class="medium-divider"></div>
+      <a href="privacy.html" class="link" target="_blank">Impressum & Datenschutz</a>
+    </div>
+  </dialog>
+  <!-- timer -->
+  <dialog class="left large l large-padding dialog-close" id="dialog-timer">
+    <button data-ui="#dialog-timer" class="fill circle small-padding large-margin absolute right top">
+      <i class="large">arrow_back_ios_new</i>
+    </button>
+    <div class="large-margin content-container">
+      <h1 class="small">Timer</h1>
+      <div class="large-padding timer-container round">
+        <div class="timer-option">
+          <button class="fill secondary-border tiny-margin">Pomodoro <span class="bold">25'</span></button>
+          <button class="border secondary-border tiny-margin">Short Break <span class="bold">5'</span></button>
+          <button class="border secondary-border tiny-margin">Long Break <span class="bold">15'</span></button>
+        </div>
+        <div class="timer-countdown">
+          <h2 class="large-timer large margin">25:00</h2>
+          <div class="field fill extra minutes-container">
+            <input type="number" class="timer-minutes" value="25">
+            <span class="helper">Minutes</span>
+          </div>
+          <div class="start-reset-container">
+            <button class="start-button no-margin">Start</button>
+            <button class="transparent circle no-margin reset-timer">
+              <i>device_reset</i>
+              <div class="tooltip bottom">Reset</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <!-- todo -->
+  <dialog class="left large large-padding l dialog-close" id="dialog-todo">
+    <button data-ui="#dialog-todo" class="fill circle small-padding large-margin absolute right top">
+      <i class="large">arrow_back_ios_new</i>
+    </button>
+    <div class="large-margin content-container">
+      <h1 class="small">To-Do</h1>
+      <form class="to-do-container">
+        <div class="new-task-container row">
+          <div class="field label border round small">
+            <input type="text">
+            <label>New task</label>
+          </div>
+          <button class="circle"><i>add</i></button>
+        </div>
+        <div class="tasks-container"></div>
+      </form>
+    </div>
+  </dialog>
+  <!-- notes -->
+  <dialog class="left large large-padding l dialog-close" id="dialog-notes">
+    <button data-ui="#dialog-notes" class="fill circle small-padding large-margin absolute right top">
+      <i class="large">arrow_back_ios_new</i>
+    </button>
+    <div class="large-margin content-container">
+      <h1 class="small">Notes</h1>
+      <div class="field textarea fill left-align">
+        <textarea class="large-padding notes-area"></textarea>
+        <span class="helper info-notes"><i class="small">info</i> Deine Notizen werden automatisch in deinem Browser gespeichert. Wenn du deine Browserdaten
+          löschst, werden die <span class="underline">Notizen</span> ebenfalls <span class="underline">gelöscht</span>.</span>
+        <button class="copy-notes transparent circle" data-ui="#copy-success">
+          <i class="large">content_copy</i>
+          <div class="tooltip bottom">Copy</div>
+        </button>
+        <div class="toast green white-text" id="copy-success">
+          <i>done</i>
+          <span>Kopieren erfolgreich!</span>
+        </div>
+        <button class="download-notes transparent circle" data-ui="#notes-saved">
+          <i class="large">download</i>
+          <div class="tooltip bottom">Download</div>
+        </button>
+        <div class="toast green white-text" id="notes-saved">
+          <i>done</i>
+          <span>Download erfolgreich!</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- DIALOGS RESPONSIVE -->
+  <!-- about -->
+  <dialog class="bottom m s dialog-close" id="dialog-about-responsive">
+    <button data-ui="#dialog-about-responsive" class="fill circle small-padding large-margin absolute right top">
+      <i class="large arrow-down-responsive">arrow_back_ios_new</i>
+    </button>
+    <div class="small-margin content-container text-justify">
+      <h1 class="small">About</h1>
+      <p>Schön, bist du hier auf <span class="italic">focus.</span> gelandet - dein perfekter Musik-Begleiter für eine produktive und
+        entspannte Zeit, passend zu deiner Umgebung und Stimmung. Ein Timer, eine To-do-Liste sowie ein digitaler Notizblock unterstützen dich bei der
+        Struktur und Entladung deines Gedankenkarussells.</p>
+      <a href="https://forms.gle/6cZh1fo7GYquNikC8" target=”_blank” class="feedback-button">
+        <button class="border secondary-border large">Lob, Anregungen, Bugs? Hinterlasse mir ein Feedback! <i class="tiny fill red-text">favorite</i></button>
+      </a>
+      <!-- <p>Lesenwerte Studien zu Musik und Lernen:</p>
+      <li><a href="https://www.jstor.org/stable/10.1086/665048" class="link" target=”_blank”>Is Noise Always Bad?</a></li> -->
+      <div class="medium-divider"></div>
+      <a href="privacy.html" class="link" target="_blank">Impressum & Datenschutz</a>
+    </div>
+  </dialog>
+  <!-- timer -->
+  <dialog class="bottom m s dialog-close" id="dialog-timer-responsive">
+    <button data-ui="#dialog-timer-responsive" class="fill circle small-padding large-margin absolute right top">
+      <i class="large arrow-down-responsive">arrow_back_ios_new</i>
+    </button>
+    <div class="small-margin content-container">
+      <h1 class="small">Timer</h1>
+      <div class="large-padding timer-container round">
+        <!-- timer option horizontal for tablet -->
+        <div class="timer-option m">
+          <button class="fill secondary-border tiny-margin">Pomodoro <span class="bold">25'</span></button>
+          <button class="border secondary-border tiny-margin">Short Break <span class="bold">5'</span></button>
+          <button class="border secondary-border tiny-margin">Long Break <span class="bold">15'</span></button>
+        </div>
+        <!-- timer option vertical for mobile -->
+        <div class="timer-option s vertical">
+          <button class="fill secondary-border">Pomodoro <span class="bold">25'</span></button>
+          <button class="border secondary-border">Short Break <span class="bold">5'</span></button>
+          <button class="border secondary-border">Long Break <span class="bold">15'</span></button>
+        </div>
+        <div class="timer-countdown">
+          <h2 class="large-timer large margin">25:00</h2>
+          <div class="field fill extra minutes-container">
+            <input type="number" class="timer-minutes" value="25">
+            <span class="helper">Minutes</span>
+          </div>
+          <div class="start-reset-container">
+            <button class="start-button no-margin">Start</button>
+            <button class="transparent circle no-margin reset-timer">
+              <i>device_reset</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+  <!-- todo -->
+  <dialog class="bottom m s dialog-close" id="dialog-todo-responsive">
+    <button data-ui="#dialog-todo-responsive" class="fill circle small-padding large-margin absolute right top">
+      <i class="large arrow-down-responsive">arrow_back_ios_new</i>
+    </button>
+    <div class="small-margin content-container">
+      <h1 class="small">To-Do</h1>
+      <form class="to-do-container">
+        <div class="new-task-container row">
+          <div class="field label border round small">
+            <input type="text">
+            <label>New task</label>
+          </div>
+          <button class="circle"><i>add</i></button>
+        </div>
+        <div class="tasks-container"></div>
+      </form>
+    </div>
+  </dialog>
+  <!-- notes -->
+  <dialog class="bottom large m s dialog-close" id="dialog-notes-responsive">
+    <button data-ui="#dialog-notes-responsive" class="fill circle small-padding large-margin absolute right top">
+      <i class="large arrow-down-responsive">arrow_back_ios_new</i>
+    </button>
+    <div class="small-margin content-container">
+      <h1 class="small">Notes</h1>
+      <div class="field textarea fill left-align">
+        <textarea class="notes-area"></textarea>
+        <span class="helper info-notes"><i class="small">info</i> Deine Notizen werden automatisch in deinem Browser gespeichert. Wenn du deine Browserdaten
+          löschst, werden die <span class="underline">Notizen</span> ebenfalls <span class="underline">gelöscht</span>.</span>
+        <button class="copy-notes transparent circle" data-ui="#copy-success-responsive">
+          <i class="large">content_copy</i>
+        </button>
+        <div class="toast green white-text" id="copy-success-responsive">
+          <i>done</i>
+          <span>Kopieren erfolgreich!</span>
+        </div>
+        <button class="download-notes transparent circle" data-ui="#notes-saved-responsive">
+          <i class="large">download</i>
+        </button>
+        <div class="toast green white-text" id="notes-saved-responsive">
+          <i>done</i>
+          <span>Download erfolgreich!</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="center-align padding transparent">
+    <p>&copy; 2023 made with <i class="tiny fill red-text">favorite</i> and lots of <i class="tiny fill brown-text">local_cafe</i> by Jasmin Fischli. All
+      rights
+      reserved.
+    </p>
+  </footer>
+</body>
+
+</html>

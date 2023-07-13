@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+
+/* === Small CSS Reset === */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+/* === Main === */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body, button, input {
+  font-family: 'Lexend', sans-serif;
+  letter-spacing: 0.0625rem;
+}
+
+ul {
+  list-style: none;
+}
+
+main {
+  margin-top: 3rem !important;
+}
+
+@media only screen and (max-width: 600px) {
+  main {
+    margin-top: unset !important;
+  }
+}
+
+@media only screen and (max-width: 993px) {
+  footer {
+    margin-bottom: 5rem;
+  }
+}
+
+h1 {
+  margin: 1rem 0;
+}
+
+.light .logo-dark {
+  display: none;
+}
+
+.dark .logo-light {
+  display: none;
+}
+
+.responsive-nav-bottom {
+  border-top: 1px solid var(--outline) !important;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* === Music Filter === */
+
+.filter-container {
+  display: flex;
+
+}
+
+/* @media only screen and (max-width: 750px) {
+  .filter-container {
+    align-self: flex-start; 
+    margin-left: 0 !important;
+  }
+} */
+
+
+/* Scroll behaviour */
+.scroll-container {
+  width: 100vw;
+  overflow-x: scroll;
+  /* Firefox */
+  scrollbar-width: none;
+  height: 200px;
+}
+
+
+@media only screen and (min-width: 750px) {
+  .scroll-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .scroll-container {
+    padding: 0 0.875rem;
+  }
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-container {
+  width: fit-content;
+}
+
+.scroll-container+.grid {
+  margin-top: -135px;
+}
+
+.ambient.active-filter {
+  background: url("../img/ambient.jpg") center;
+}
+
+.instrumental.active-filter {
+  background: url("../img/instrumental.jpg") center;
+}
+
+.lofi.active-filter {
+  background: url("../img/lofi.jpg") center;
+}
+
+.jazzchill.active-filter {
+  background: url("../img/jazz_chillout.jpg") center;
+}
+
+.moody:hover, .moody.active-filter {
+  background: url("../img/mood.jpg") center;
+}
+
+@media only screen and (min-width: 993px) {
+  .ambient:hover {
+    background: url("../img/ambient.jpg") center;
+  }
+
+  .instrumental:hover {
+    background: url("../img/instrumental.jpg") center;
+  }
+
+  .lofi:hover {
+    background: url("../img/lofi.jpg") center;
+  }
+
+  .jazzchill:hover {
+    background: url("../img/jazz_chillout.jpg") center;
+  }
+}
+
+.moody>menu {
+  transform: translateY(108%) !important;
+}
+
+.filtered:hover, .filter:hover, .filter.active-filter, .moody.active-filter {
+  color: white;
+}
+
+/* === Sound Icons Area === */
+
+.grid {
+  width: 34.375rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .grid {
+    width: 22.625rem;
+  }
+}
+
+.sound-container {
+  width: 7.8125rem;
+}
+
+.ambient-icons {
+  font-size: 4.75rem;
+  width: unset;
+  height: unset;
+  line-height: 1;
+  user-select: none;
+}
+
+.ambient-icons-container {
+  position: relative;
+}
+
+.ambient-icons-container:hover {
+  cursor: pointer;
+}
+
+.ambient-icons-container:not(.primary):hover i {
+  color: var(--primary);
+}
+
+.ambient-icons-container:active {
+  cursor: ew-resize;
+}
+
+.primary>.volume-bar {
+  display: block;
+  position: absolute;
+  width: 66%;
+  height: 100%;
+  background: black;
+  opacity: 20%;
+  bottom: 0;
+  left: 0;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.volume-bar {
+  display: none;
+}
+
+.dark .volume-bar {
+  background: black !important;
+}
+
+.light .volume-bar {
+  background: white !important;
+}
+
+/* === Dialog === */
+
+.arrow-down-responsive {
+  transform: rotate(-90deg);
+}
+
+.content-container {
+  height: 88%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* .left-margin {
+  margin: 0 0 0.5rem 1.5rem;
+} */
+
+/* === About === */
+
+.feedback-button {
+  margin: 1.5rem 0;
+}
+
+/* .studies {
+  margin-top: 3rem;
+} */
+
+/* === Privacy === */
+
+.music-source-container {
+  margin-bottom: 1.5rem;
+}
+
+.music-source-container .chip {
+  margin: 0.3rem;
+}
+
+/* === Timer === */
+
+.dark .timer-container {
+  background: #49454f44 !important;
+}
+
+.light .timer-container {
+  background: #e7e0ec3b !important;
+}
+
+.timer-option button {
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.timer-option.vertical {
+  padding: unset;
+}
+
+.timer-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin: 1.3rem 1.3rem 0 1.3rem; */
+}
+
+.minutes-container {
+  width: 7.1875rem;
+}
+
+.minutes-container span {
+  position: unset !important;
+}
+
+.timer-minutes {
+  font-size: 2.8125rem !important;
+  text-align: center;
+}
+
+.timer-minutes::placeholder, .timer-minutes:focus {
+  font-size: 2.8125rem;
+  color: var(--on-background);
+}
+
+.large-timer {
+  display: none;
+}
+
+/* === To-Do === */
+
+.tasks-container {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.task {
+  margin-top: 0.5rem !important;
+}
+
+.task span {
+  padding-left: 0.5rem !important;
+}
+
+.dark .task:nth-child(even) {
+  background: #49454f80 !important;
+}
+
+.light .task:nth-child(even) {
+  background: #e7e0ec80 !important;
+}
+
+/* check completed status */
+.completed .checkbox>span {
+  text-decoration: line-through;
+}
+
+.task>a {
+  display: none;
+}
+
+.completed>a {
+  display: inline-flex;
+}
+
+/* === Notes === */
+
+.textarea {
+  height: 55% !important;
+}
+
+textarea {
+  letter-spacing: 0.0625rem;
+  font-size: 0.875rem !important;
+  margin-bottom: 0.5rem;
+  height: 100% !important;
+  line-height: 1.5;
+}
+
+.info-notes {
+  position: unset !important;
+}
+
+.copy-notes, .download-notes {
+  position: absolute;
+  bottom: 1rem;
+  right: 0.8rem;
+}
+
+.copy-notes {
+  right: 3.5rem;
+}
