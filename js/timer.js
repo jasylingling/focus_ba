@@ -9,7 +9,7 @@ const startPauseButtons = document.querySelectorAll(".timer-countdown .start-but
 const displays = document.querySelectorAll(".large-timer");
 
 startPauseButtons.forEach(button => {
-  
+
   button.addEventListener("click", function() {
     // console.log(document.querySelector('.timer-minutes').value)
     // seconds = document.querySelector('.timer-minutes').value * 60
@@ -34,9 +34,25 @@ startPauseButtons.forEach(button => {
           clearInterval(timer);
           // document.querySelector('[data-ui="#dialog-timer"]').innerHTML = `<i class="small-padding" aria-label="link to timer">timer</i>Done!`
           // document.querySelector('[data-ui="#dialog-timer-responsive"]').innerHTML = `<i aria-label="link to timer">timer</i>Done!`
+
+          
           const audio = new Audio("audio/timer_bell.mp3");
           audio.play()
           resetTimer()
+          
+          // Check if we neede to add a toast
+          // let toast =  document.createElement('div')
+          // toast.innerHTML = `
+          //   <i>warning</i>
+          //   <span>I'm a toast</span>
+          //   <div class="max"></div>
+          //   <i>close</i>
+          // `
+          // toast.classList.add('toasty')
+          // toast.setAttribute('onclick', 'removeToast()')
+          // document.body.appendChild(toast)
+          document.querySelector('#toast').classList.add('active')
+
         }
       }, 1000);
     } else {
@@ -122,14 +138,18 @@ function setClickedButton (buttonText) {
   })
 }
 
+// Overwrite other timer's time when timer is changed
+
 document.querySelectorAll('.timer-minutes')[0].addEventListener('input', function () {
-  document.querySelectorAll('.timer-minutes')[1].value = this.value
+  document.querySelectorAll('.timer-minutes')[1].value = this.value 
   seconds = document.querySelector('.timer-minutes').value * 60
+  if(seconds < 60) {seconds = 60}
 } )
 
 document.querySelectorAll('.timer-minutes')[1].addEventListener('input', function () {
   document.querySelectorAll('.timer-minutes')[0].value = this.value
   seconds = document.querySelector('.timer-minutes').value * 60
+  if(seconds < 60) {seconds = 60}
 } )
 
 document.querySelectorAll('.reset-timer').forEach(button => {
@@ -164,4 +184,9 @@ function resetTimer() {
 
   document.querySelectorAll('.minutes-container').forEach(element=> element.style.display = 'block')
   document.querySelectorAll('.large-timer').forEach(element=> element.style.display = 'none')
+}
+
+
+function removeToast () {
+  ui('#toast', 0)
 }

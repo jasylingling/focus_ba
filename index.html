@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="UTF-8">
@@ -333,8 +333,6 @@
       <a href="https://forms.gle/6cZh1fo7GYquNikC8" target=”_blank” class="feedback-button">
         <button class="border secondary-border large">Lob, Anregungen, Bugs? Hinterlasse mir ein Feedback! <i class="tiny fill red-text">favorite</i></button>
       </a>
-      <!-- <p>Lesenwerte Studien zu Musik und Lernen:</p>
-      <li><a href="https://www.jstor.org/stable/10.1086/665048" class="link" target=”_blank”>Is Noise Always Bad?</a></li> -->
       <div class="medium-divider"></div>
       <a href="privacy.html" class="link" target="_blank">Impressum & Datenschutz</a>
     </div>
@@ -348,7 +346,11 @@
       <h1 class="small">Timer</h1>
       <div class="large-padding timer-container round">
         <div class="timer-option">
-          <button class="fill secondary-border tiny-margin">Pomodoro <span class="bold">25'</span></button>
+          <button class="fill secondary-border tiny-margin">Pomodoro <span class="bold">25'</span>
+            <div class="tooltip max pomodoro-description">Verwende die Pomodoro-Technik, indem du 25 Minuten arbeitest (Pomodoro), dann 5 Minuten Pause machst (Short Break),
+              und nach vier Pomodoro-Einheiten eine längere Pause von 15 Minuten (Long Break) einlegst. So steigerst du die Produktivität und beugst Ermüdung
+              vor.</div>
+          </button>
           <button class="border secondary-border tiny-margin">Short Break <span class="bold">5'</span></button>
           <button class="border secondary-border tiny-margin">Long Break <span class="bold">15'</span></button>
         </div>
@@ -401,15 +403,15 @@
           löschst, werden die <span class="underline">Notizen</span> ebenfalls <span class="underline">gelöscht</span>.</span>
         <button class="copy-notes transparent circle" data-ui="#copy-success">
           <i class="large">content_copy</i>
-          <div class="tooltip bottom">Copy</div>
+          <div class="tooltip">Copy</div>
         </button>
         <div class="toast green white-text" id="copy-success">
           <i>done</i>
-          <span>Kopieren erfolgreich!</span>
+          <span>Notizen kopiert!</span>
         </div>
         <button class="download-notes transparent circle" data-ui="#notes-saved">
           <i class="large">download</i>
-          <div class="tooltip bottom">Download</div>
+          <div class="tooltip">Download</div>
         </button>
         <div class="toast green white-text" id="notes-saved">
           <i>done</i>
@@ -433,8 +435,6 @@
       <a href="https://forms.gle/6cZh1fo7GYquNikC8" target=”_blank” class="feedback-button">
         <button class="border secondary-border large">Lob, Anregungen, Bugs? Hinterlasse mir ein Feedback! <i class="tiny fill red-text">favorite</i></button>
       </a>
-      <!-- <p>Lesenwerte Studien zu Musik und Lernen:</p>
-      <li><a href="https://www.jstor.org/stable/10.1086/665048" class="link" target=”_blank”>Is Noise Always Bad?</a></li> -->
       <div class="medium-divider"></div>
       <a href="privacy.html" class="link" target="_blank">Impressum & Datenschutz</a>
     </div>
@@ -510,7 +510,7 @@
         </button>
         <div class="toast green white-text" id="copy-success-responsive">
           <i>done</i>
-          <span>Kopieren erfolgreich!</span>
+          <span>Notizen kopiert!</span>
         </div>
         <button class="download-notes transparent circle" data-ui="#notes-saved-responsive">
           <i class="large">download</i>
@@ -524,11 +524,17 @@
   </dialog>
 
   <footer class="center-align padding transparent">
-    <p>&copy; 2023 made with <i class="tiny fill red-text">favorite</i> and lots of <i class="tiny fill brown-text">local_cafe</i> by Jasmin Fischli. All
-      rights
-      reserved.
-    </p>
+    <!-- <p>&copy; 2023 made with <i class="tiny fill red-text">favorite</i> and lots of <i class="tiny fill brown-text">local_cafe</i> by Jasmin Fischli. All rights reserved.</p> -->
+    <p>&copy; 2023 made with ❤️ and lots of ☕ by Jasmin Fischli. All rights reserved.</p>
   </footer>
+
+  <!-- toast (will only be displayed when timer is over) -->
+  <div class="toast primary" id="toast">
+    <i>timer</i>
+    <span>Zeit ist abgelaufen</span>
+    <div class="max"></div>
+    <button onclick="removeToast()" class="transparent circle"><i>close</i></button>
+  </div>
 </body>
 
 </html>

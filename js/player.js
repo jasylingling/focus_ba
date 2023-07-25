@@ -128,7 +128,7 @@ document.querySelectorAll('.ambient-icons-container').forEach(function (icon) {
     sounds[icon.dataset.audio] = new Howl({
       src: [`audio/${icon.dataset.audio}.mp3`],
       loop: true,
-      volume: 0.66
+      volume: 0.5
     });
 
     /* 

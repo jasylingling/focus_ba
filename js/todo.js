@@ -7,10 +7,13 @@ loadLS ()
 document.querySelectorAll('.new-task-container button').forEach(button => {
   button.addEventListener('click', (e) => {
     e.preventDefault()
-    const todo = button.parentNode.querySelector('input').value
-    button.parentNode.querySelector('input').value = ""
-    createTodo(todo, false ,true)
-    loadLS()
+    button.parentNode.querySelector('input').value = button.parentNode.querySelector('input').value.trim()
+    if(button.parentNode.querySelector('input').value.length > 0){
+      const todo = button.parentNode.querySelector('input').value
+      button.parentNode.querySelector('input').value = ""
+      createTodo(todo, false ,true)
+      loadLS()
+    }
   })
 })
 
@@ -19,11 +22,15 @@ document.querySelectorAll('.tasks-container').forEach(container => {
   container.addEventListener('click', function (e) {
     
     if (e.target.tagName == 'INPUT' ){
+      const audio = new Audio("audio/todo_check.mp3");
+      audio.play()
       e.target.parentNode.parentNode.classList.toggle('completed')
       updateLS(this)
       loadLS()
     }
     if (e.target.tagName == 'I') {
+      const audio = new Audio("audio/todo_delete.mp3");
+      audio.play()
       e.target.parentNode.parentNode.remove()
       updateLS(this)
       loadLS()
@@ -38,7 +45,6 @@ function createTodo(todo, status = false, input = false) {
     ${status ? '<input type="checkbox" checked>' : '<input type="checkbox">' }
     <span>${todo}</span>
   </label>
-  <div class="max"></div>
   <a>
     <i>delete</i>
   </a>`

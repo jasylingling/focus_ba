@@ -1,8 +1,8 @@
-# focus. 🔍🧠🎵 - 1. Usability-Test
-##### **Autor: Jasmin Fischli** 🌈 **Version: 1.1.0** 🧾
+# focus. 🔍🧠🎵 - 2. Usability-Test
+##### **Autor: Jasmin Fischli** 🌈 **Version: 1.2.0** 🧾
 
 
-Im Zusammenhang mit dem Major Project wurde die 1. Version der Fokus-App mit Ambient Sounds weiterentwickelt und steht nun für den 1. Usabiliy-Test bereit.
+Im Zusammenhang mit dem Major Project wurde die 2. Version der Fokus-App mit Ambient Sounds weiterentwickelt und steht nun für den 2. Usabiliy-Test bereit.
 
 
 #### **Built with 🛠️**

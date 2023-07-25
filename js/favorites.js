@@ -1,13 +1,18 @@
 // When clicking on sounds tab
 // get rid of all favorites
 document.querySelector(".t-sounds").addEventListener("click", function (e) {
+  goToSongs (this)
+});
+
+function goToSongs (tab) {
   // Remove active class from favorite tab
   document.querySelector(".t-favorites").classList.remove("active");
   //reset all tabs
-  resetTabs(this);
+  resetTabs(tab);
   document.querySelector(".filter-container").style.display = "flex";
   // Remove all styles from previously selected filters :
   document.querySelectorAll('.filter').forEach(filter=>filter.classList.remove('active-filter'))
+  document.querySelector('.moody').classList.remove('active-filter')
   // Show all sounds that need to be shown
   document.querySelectorAll(".sound-container").forEach((icon) => {
     icon.style.display = "block";
@@ -33,7 +38,7 @@ document.querySelector(".t-sounds").addEventListener("click", function (e) {
   if (showAll) {
     document.querySelector(".show-all").style.display = "none";
   }
-});
+}
 
 document.querySelector(".t-favorites").addEventListener("click", function (e) {
   document.querySelector(".t-sounds").classList.remove("active");
@@ -91,15 +96,19 @@ function checkIfEmpty() {
     <div class="max large-margin"></div>
     <span>Oh oh, du hast noch keinen Lieblingssound hinzugefügt!</span>
     <div class="max large-margin"></div>
-    <a href="index.html">
-      <button class="large">Sounds zu Favoriten hinzufügen</button>
-    </a>
+    
+      <button class="large backToSongs">Sounds zu Favoriten hinzufügen</button>
+    
     <div class="max large-margin"></div>
     <span class="small-text"><i class="small">info</i> Deine Favoriten werden automatisch in deinem Browser gespeichert. Wenn du deine Browserdaten
           löschst, werden deine <span class="underline">Favoriten</span> ebenfalls <span class="underline">gelöscht</span>.</span>
     `;
     document.querySelector(".random-container").style.display = "none";
     document.querySelector(".tabs").after(div);
+    document.querySelector(".backToSongs").addEventListener("click", function (e) {
+      goToSongs (document.querySelector('.t-sounds'))
+    });
+    
   }
 }
 
