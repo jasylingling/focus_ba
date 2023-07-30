@@ -106,6 +106,8 @@ h1 {
 }
 
 .filter-container {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
   width: fit-content;
 }
 
@@ -180,7 +182,10 @@ h1 {
   width: unset;
   height: unset;
   line-height: 1;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .ambient-icons-container {
@@ -235,7 +240,9 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  hyphens: auto;
+  -webkit-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto;
 }
 
 /* .left-margin {
@@ -299,6 +306,26 @@ h1 {
 .timer-minutes {
   font-size: 2.8125rem !important;
   text-align: center;
+}
+
+.timer-minutes::-webkit-input-placeholder {
+  font-size: 2.8125rem;
+  color: var(--on-background);
+}
+
+.timer-minutes::-moz-placeholder {
+  font-size: 2.8125rem;
+  color: var(--on-background);
+}
+
+.timer-minutes:-ms-input-placeholder {
+  font-size: 2.8125rem;
+  color: var(--on-background);
+}
+
+.timer-minutes::-ms-input-placeholder {
+  font-size: 2.8125rem;
+  color: var(--on-background);
 }
 
 .timer-minutes::placeholder, .timer-minutes:focus {
