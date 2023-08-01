@@ -411,6 +411,13 @@ document.querySelectorAll('.mood').forEach(item => {
   })
 })
 
+// Fix for safari (work in progress)
+if (/^((?!chrome|android).)*safari/i.test(navigator.userAgent)){
+  document.querySelector('.moody').addEventListener('click', function() {
+    document.querySelector('.moody menu').classList.toggle('active')
+  } )
+}
+
 function stopAllSound () {
   // Reset all icons
   document.querySelectorAll('.ambient-icons-container').forEach(function (icon) {
